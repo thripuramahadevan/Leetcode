@@ -1,0 +1,55 @@
+class Solution {
+public:
+    vector<string> findWords(vector<string>& words) {
+        vector<string> result;
+        int n = 0;
+       
+        string row1 = "qwertyuiop";
+        string row2 = "asdfghjkl";
+        string row3 = "zxcvbnm";
+        
+        for (auto str : words) {
+            int len = str.length();
+            bool sameRow = true;
+            if (row1.find(tolower(str[0])) != string::npos) {
+                for (int i=1;i<len;++i) {
+                    if (row1.find(tolower(str[i])) == string::npos) {
+                        sameRow = false;
+                        break;
+                    }
+                }
+                if (sameRow == false) continue;
+                else {
+                    result.push_back(str);
+                }
+            }
+            else if (row2.find(tolower(str[0])) != string::npos) {
+                for (int i=1;i<len;++i) {
+                    if (row2.find(tolower(str[i])) == string::npos) {
+                        sameRow = false;
+                        break;
+                    }
+                }
+                if (sameRow == false) continue;
+                else {
+                    result.push_back(str);
+                }
+            }
+            else {
+                for (int i=1;i<len;++i) {
+                    if (row3.find(tolower(str[i])) == string::npos) {
+                        sameRow = false;
+                        break;
+                    }
+                }
+                if (sameRow == false) continue;
+                else {
+                    result.push_back(str);
+                    ++n;
+                }
+            }
+        }
+        
+         return result;   
+    }
+};
