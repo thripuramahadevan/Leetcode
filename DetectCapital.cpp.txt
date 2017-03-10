@@ -1,0 +1,14 @@
+#include <ctype.h>
+class Solution {
+public:
+    bool detectCapitalUse(string word) {
+        bool res = true;
+        
+        
+        for (int i = 1;i < word.length();++i) {
+            if (((islower(word[i-1])) && isupper(word[i])) || ((isupper(word[i-1])) && (i > 1) && islower(word[i]))) return false;
+        }
+        
+        return res;
+    }
+};

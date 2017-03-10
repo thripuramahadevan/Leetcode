@@ -1,0 +1,40 @@
+class Solution {
+public:
+    int findLonelyPixel(vector<vector<char>>& picture) {
+        int count = 0;
+        int i = 0, j = 0;
+        for (;i < picture.size();++i)
+        {
+            for (j=0;j < picture[0].size();++j)
+            {
+                if (picture[i][j] == 'B')
+                {
+                    bool dup = false;
+                    for (int k=i,l=0;l < picture[0].size();++l)
+                    {
+                        if (l == j) continue;
+                        if (picture[k][l] == 'B')
+                        {
+                            dup = true;
+                            break;
+                        }
+                    }
+                    if (dup == false)
+                    {
+                        for (int k = 0,l = j;k<picture.size();++k)
+                        {
+                            if (k == i) continue;
+                            if (picture[k][l] == 'B')
+                            {
+                                dup = true;
+                                break;
+                            }
+                        }
+                    }
+                    if (dup == false) ++count;
+                }
+            }
+        }
+        return count;
+    }
+};

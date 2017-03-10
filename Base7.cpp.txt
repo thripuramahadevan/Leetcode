@@ -1,0 +1,23 @@
+#define ABS(x) (x<0)? -x:x;
+
+class Solution {
+public:
+    string base7Helper (int num) {
+        if (num < 7) return to_string(num);
+        return ((base7Helper(num/7)) + to_string(num%7));
+    }
+    string convertToBase7(int num) {
+        string result;
+        bool neg = false;
+        if (num < 0) {
+            neg = true; 
+            result = '-' + base7Helper(-num);
+            return result;
+        }
+        else {
+            return base7Helper(num);
+        }
+        
+        
+    }
+};

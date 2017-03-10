@@ -1,0 +1,41 @@
+class Solution {
+public:
+    bool wordPattern(string pattern, string str) {
+        vector<string> words;
+        int i;
+        for (i = 0; i <= str.length();) {
+            int pos = str.find(' ',i);
+            
+            if (pos == string::npos) {
+                pos = str.find('\0',i);
+                if (pos == string::npos) break;
+            }
+            string word = str.substr(i,pos-i);
+            words.push_back(word);    
+            i += (pos-i) + 1;
+        }
+        string word = str.substr(i);
+        words.push_back(word);
+        
+        if (pattern.length() != words.size()) return false;
+        
+        for (int i = 0;i < pattern.length();++i) {
+            char c = pattern[i];
+            if (c == 'X') continue;
+            for (int j = i+1; j < pattern.length();++j) {
+                if (pattern[j] == c) {
+                    if (words[i].find(words[j]) == string::npos) return false;
+                    pattern[i] = 'X';
+                    pattern[j] = 'X';
+                }
+                else {
+                    if (words[i].find(words[j]) != string::npos && words[i].length() == words[j].length()) return false;
+                }
+            }
+            
+        }
+        
+        return true;
+        
+    }
+};
