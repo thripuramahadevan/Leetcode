@@ -1,0 +1,48 @@
+class Solution {
+public:
+    int findMinDifference(vector<string>& timePoints) {
+        int diff = INT_MAX,hour1=0,hour2=0,min1=0,min2=0;
+        
+        vector<int> times;
+        stringstream ss;
+        //sort(timePoints.begin(),timePoints.end());
+        
+        for (auto time : timePoints)
+        {
+            int pos1 = time.find(':');
+        
+            ss.clear();
+            ss.str("");
+            ss.str(time.substr(0,pos1));
+            ss >> hour1;
+            //cout << "hour1 = " << hour1 << endl;
+            
+            ss.clear();
+            ss.str("");
+            ss.str(time.substr(pos1+1,time.size()-pos1));
+            ss >> min1;
+            //cout << "min1 = " << min1 << endl;
+            
+            int time1 = hour1*60+min1;
+            times.push_back(time1);
+        }
+        
+        sort(times.begin(),times.end());
+        
+        for (int i=0;i<(times.size()-1);++i)
+        {
+            for (int j=i+1;j<times.size();++j)
+            {
+                int thisdiff = times[j]-times[i];
+            
+                if ((1440-thisdiff) < thisdiff) thisdiff = 1440-thisdiff;
+            
+                if (thisdiff < diff) diff = thisdiff;
+            }
+            
+        }
+        
+        return diff;
+        
+    }
+};

@@ -1,0 +1,62 @@
+class Solution {
+public:
+
+    string complexNumberMultiply(string a, string b) {
+
+        
+        string result;
+
+        
+        int aa = 0, bb = 0, cc = 0, dd = 0, e = 0, f = 0;
+
+        
+        int pos = a.find('+');
+
+	        aa = atoi(a.substr(0,pos).c_str());
+	
+        if (a[pos+1] == '-')
+	
+        {
+
+	            bb = -atoi(a.substr(pos+2).c_str());
+	
+        }
+	
+        else
+
+	            bb = atoi(a.substr(pos+1).c_str());
+
+        
+        pos = b.find('+');
+	
+        cc = atoi(b.substr(0,pos).c_str());
+	
+        if (b[pos+1] == '-')
+
+        
+            dd = -atoi(b.substr(pos+2).c_str());
+
+        
+        else
+	
+            dd = atoi(b.substr(pos+1).c_str());
+
+    
+        
+    e = (aa*cc) + (bb*dd*(-1));
+
+		f = (aa*dd)+(cc*bb);
+	    
+    stringstream ss1,ss2;
+	    
+    ss1 << e;
+
+	        ss2 << f;
+
+	        result = ss1.str() + '+' + ss2.str() + 'i';
+	
+        return result;
+
+    }
+
+};

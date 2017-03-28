@@ -1,0 +1,38 @@
+class Solution {
+public:
+  
+    string reverseStr(string s, int k) {
+        
+        string res;
+        
+        int length = s.length();
+        
+        if (length < k)
+        {
+            reverse(s.begin(),s.end());
+            return s;
+        }
+        
+        for (int i=0;i<length;i+=2*k)
+        {
+            string str;
+           if ((i+k) <= length)
+           
+                str = s.substr(i,k);
+           
+           else
+                str = s.substr(i);
+           std::reverse(str.begin(), str.end());
+            res += str;
+            if ((i+2*k) <= length)
+                res += s.substr(i+k,k);
+            else
+            {
+                if (i+k < length) res += s.substr(i+k); 
+            }
+                
+        }
+        return res;
+        
+    }
+};

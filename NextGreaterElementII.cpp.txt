@@ -1,0 +1,41 @@
+class Solution {
+public:
+    vector<int> nextGreaterElements(vector<int>& nums) {
+        vector<int> sortNums(2*nums.size());
+        vector<int> result(nums.size(),-1);
+        
+        int sz = nums.size();
+        int i=0;
+        for (;i< sz;++i)
+        {
+            sortNums[i] = nums[i];
+        }
+        for (;i<2*sz;++i)
+        {
+            sortNums[i] = nums[i-sz];
+        }
+        
+        
+        for (int i=0;i<nums.size();++i)
+        {
+            int num = nums[i];
+            
+            for (int j = i+1;j <= sz+i;++j)
+            {
+                if (sortNums[j] > num) 
+                {
+                    result[i] = sortNums[j];
+                    break;
+                }
+                else
+                {
+                    if ((j+1) == sz+i) result[i] = -1;
+                    else continue;
+                }
+            }
+        }
+        
+        return result;
+        
+    }
+};

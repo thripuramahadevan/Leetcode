@@ -1,0 +1,41 @@
+class Solution {
+
+public:
+
+    bool checkPerfectNumber(int num) {
+
+        
+        int sum = 0;
+
+        
+        vector<int> divisors;
+
+        
+        for (int i=1;i<=num/2;++i)
+
+        	{
+	
+            if (num % i == 0)
+
+                	divisors.push_back(i);
+
+	        }
+
+        
+        for (auto n : divisors)
+	
+        {
+	
+            sum += n;
+	
+        }
+	
+        if (sum == num) return true;
+
+        
+        return false;
+
+        
+    }
+
+};
