@@ -1,0 +1,31 @@
+#include <cfloat>
+#include <float.h>
+
+class Solution {
+public:
+    double findMaxAverage(vector<int>& nums, int k) {
+        double avg;
+        
+        double maxSum = INT_MIN;
+        
+        int len = nums.size();
+        
+        if (len == 1) return nums[0];
+        
+        for (int i=0; i<=len-k;++i)
+        {
+            double sum = 0;
+            for (int j=i;j<(i+k);++j)
+            {
+                sum += nums[j];
+            }
+            if (sum > maxSum)
+                maxSum = sum;
+        }
+        
+        avg = maxSum/k;
+        
+        return avg;
+        
+    }
+};
